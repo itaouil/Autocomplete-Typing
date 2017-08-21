@@ -1,0 +1,53 @@
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'Open Sand', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+form {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+input.search {
+  width: 120%;
+  padding: 20px;
+  text-align: center;
+  font-size: 40px;
+  border: 10px solid #F7F7F7;
+  border-radius: 5px;
+  z-index: 2;
+  position: relative;
+  left: -12%;
+  top: 10px;
+}
+
+.suggestions {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  left: 5%;
+}
+
+.suggestions li {
+  list-style: none;
+  background-color: white;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #D8D8D8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  padding: 20px;
+}
+
+.suggestions li:nth-child(even) {
+  transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+  background: linear-gradient(to bottom, #ffffff 0%, #EFEFEF 100%);
+}
+
+.suggestions li:nth-child(odd) {
+  transform: perspective(100px) rotateX(-3deg) translateY(3px);
+  background: linear-gradient(to top, #ffffff 0%, #EFEFEF 100%);
+}
