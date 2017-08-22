@@ -88,3 +88,56 @@ Now it is time for the suggestions, where we are going to display the data regar
 ```
 
 The interesting part here is the transformation of the list items using the perspective, rotations and translation animations.
+
+
+### JavaScript
+
+And here is the JavaScript part where we make use of *fetch* web api to fetch asynchronously across the browser and of the latest ES6 to write some nice and clean JavaScript.
+
+```JavaScript
+// Some references
+const cities = [];
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+// Number with commas
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Find matches on the dataset
+function findMatches(wordToMatch, cities) {
+  const regex = new RegExp(wordToMatch, 'gi');
+  return cities.filter(place => place.city.match(regex) || place.state.match(regex));
+}
+
+// Render matches on page
+function renderMatches() {
+  const matches = findMatches(this.value, cities);
+  const html = matches.map(match => {
+    const regex = new RegExp(this.value, 'gi');
+    const cityName = match.city.replace(regex, `<span class='hl'>${this.value}</span>`);
+    const stateName = match.state.replace(regex, `<span class='hl'>${this.value}</span>`);
+    return `
+      <li>
+        <span>${cityName}, ${stateName}</span>
+        <span>${numberWithCommas(math.population)}</span>
+      </li>
+    `
+  }).join('');
+
+  // Inject html in the DOM
+  suggestions.innerHTML = html;
+}
+
+// DOM references
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+// Fetch data (return a Promise)
+fetch(endpoint)
+  .then(response => response.json())
+  .then(data => cities.push(...data)); // deconstruct the array (spread operator)
+
+// Search Input event listener
+searchInput.addEventListener('keyup', renderMatches);
+```
