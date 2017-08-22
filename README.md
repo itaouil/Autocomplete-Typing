@@ -4,7 +4,7 @@ Project 6 out of 30 mini projects written from scratch using only HTML5, CSS3 an
 
 This project consists in creating a type-ahead/auto-complete form, that suggests results on user input. The final result looks like this:
 
-![alt text]()
+![alt text](https://github.com/itaouil95/Autocomplete-Typing/blob/master/autocomplete.png)
 
 
 ### HTML
